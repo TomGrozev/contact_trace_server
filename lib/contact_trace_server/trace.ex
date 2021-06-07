@@ -52,7 +52,8 @@ defmodule ContactTraceServer.Trace do
 
   """
   def list_contacts do
-    Repo.all(Contacts, preload: :contacts)
+    Repo.all(from c in Contacts, select: c.contacts)
+    |> Enum.map(fn c -> Enum.map(c, & %{uuid: &1.uuid, time: &1.time}) end)
   end
 
   @doc """

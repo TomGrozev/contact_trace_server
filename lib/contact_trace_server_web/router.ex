@@ -30,6 +30,7 @@ defmodule ContactTraceServerWeb.Router do
   scope "/api", ContactTraceServerWeb do
     pipe_through :api
 
+    get "/", TraceController, :index
     post "/trace", TraceController, :create
   end
 

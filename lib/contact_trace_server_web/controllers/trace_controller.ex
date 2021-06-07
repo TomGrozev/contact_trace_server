@@ -3,6 +3,12 @@ defmodule ContactTraceServerWeb.TraceController do
 
   alias ContactTraceServer.Trace
 
+  def index(conn, _params) do
+    contacts = Trace.list_contacts()
+
+    json(conn, contacts)
+  end
+
   def create(conn, %{"infection_code" => infection_code, "contacts" => contacts})
       when is_list(contacts) do
     Trace.create_contacts(infection_code, contacts)
