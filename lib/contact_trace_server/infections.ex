@@ -37,6 +37,8 @@ defmodule ContactTraceServer.Infections do
   """
   def get_infection!(id), do: Repo.get!(Infection, id)
 
+  def valid_infection_code?(id), do: Repo.exists?(from i in Infection, where: i.id == ^id)
+
   @doc """
   Creates a infection.
 

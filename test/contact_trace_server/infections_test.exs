@@ -41,7 +41,10 @@ defmodule ContactTraceServer.InfectionsTest do
 
     test "update_infection/2 with valid data updates the infection" do
       infection = infection_fixture()
-      assert {:ok, %Infection{} = infection} = Infections.update_infection(infection, @update_attrs)
+
+      assert {:ok, %Infection{} = infection} =
+               Infections.update_infection(infection, @update_attrs)
+
       assert infection.first_name == "some updated first_name"
       assert infection.last_name == "some updated last_name"
     end

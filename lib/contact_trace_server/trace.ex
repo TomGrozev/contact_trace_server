@@ -7,6 +7,7 @@ defmodule ContactTraceServer.Trace do
   alias ContactTraceServer.Repo
 
   alias ContactTraceServer.Trace.Contact
+  alias ContactTraceServer.Infections
 
   @doc """
   Creates a contact.
@@ -82,9 +83,20 @@ defmodule ContactTraceServer.Trace do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_contacts(attrs \\ %{}) do
+  def create_contacts(infection_code, contacts) do
+    Infections.valid_infection_code?(infection_code)
+    |> case do
+      true ->
+        do_create_contacts(contacts)
+
+      false ->
+        {:error, :invalid_infection_code}
+    end
+  end
+
+  defp do_create_contacts(contacts) do
     %Contacts{}
-    |> Contacts.changeset(attrs)
+    |> Contacts.changeset(%{expires_at: DateTime.utc_now(), contacts: contacts})
     |> Repo.insert()
   end
 

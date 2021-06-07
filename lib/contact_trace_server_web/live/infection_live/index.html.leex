@@ -12,6 +12,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>First name</th>
       <th>Last name</th>
 
@@ -21,6 +22,7 @@
   <tbody id="infections">
     <%= for infection <- @infections do %>
       <tr id="infection-<%= infection.id %>">
+        <td><%= infection.id %></td>
         <td><%= infection.first_name %></td>
         <td><%= infection.last_name %></td>
 

@@ -30,7 +30,7 @@ defmodule ContactTraceServerWeb.Router do
   scope "/api", ContactTraceServerWeb do
     pipe_through :api
 
-    #    post "/trace",
+    post "/trace", TraceController, :create
   end
 
   # Enables LiveDashboard only for development

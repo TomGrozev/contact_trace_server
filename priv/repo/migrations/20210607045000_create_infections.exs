@@ -8,6 +8,5 @@ defmodule ContactTraceServer.Repo.Migrations.CreateInfections do
 
       timestamps()
     end
-
   end
 end
