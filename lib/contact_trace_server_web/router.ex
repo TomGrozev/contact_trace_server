@@ -18,12 +18,20 @@ defmodule ContactTraceServerWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+
+    live "/infections", InfectionLive.Index, :index
+    live "/infections/new", InfectionLive.Index, :new
+    live "/infections/:id/edit", InfectionLive.Index, :edit
+
+    live "/infections/:id", InfectionLive.Show, :show
+    live "/infections/:id/show/edit", InfectionLive.Show, :edit
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", ContactTraceServerWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", ContactTraceServerWeb do
+    pipe_through :api
+
+    #    post "/trace",
+  end
 
   # Enables LiveDashboard only for development
   #

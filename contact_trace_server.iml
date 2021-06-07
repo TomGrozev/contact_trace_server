@@ -4,6 +4,9 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/lib" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/exqlite" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/elixir_make" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ecto_sqlite3" />
     </content>
     <orderEntry type="jdk" jdkName="Elixir at /usr/lib/elixir" jdkType="Elixir SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -47,5 +50,11 @@
     <orderEntry type="library" name="mime" level="project" />
     <orderEntry type="library" name="decimal" level="project" />
     <orderEntry type="library" name="connection" level="project" />
+    <orderEntry type="library" name="exqlite" level="project" />
+    <orderEntry type="library" name="temp" level="project" />
+    <orderEntry type="library" name="benchee_markdown" level="project" />
+    <orderEntry type="library" name="postgrex" level="project" />
+    <orderEntry type="library" name="myxql" level="project" />
+    <orderEntry type="library" name="elixir_make" level="project" />
   </component>
 </module>

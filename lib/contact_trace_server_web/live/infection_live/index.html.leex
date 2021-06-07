@@ -1,0 +1,37 @@
+<h1>Listing Infections</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, ContactTraceServerWeb.InfectionLive.FormComponent,
+    id: @infection.id || :new,
+    title: @page_title,
+    action: @live_action,
+    infection: @infection,
+    return_to: Routes.infection_index_path(@socket, :index) %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="infections">
+    <%= for infection <- @infections do %>
+      <tr id="infection-<%= infection.id %>">
+        <td><%= infection.first_name %></td>
+        <td><%= infection.last_name %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.infection_show_path(@socket, :show, infection) %></span>
+          <span><%= live_patch "Edit", to: Routes.infection_index_path(@socket, :edit, infection) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: infection.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Infection", to: Routes.infection_index_path(@socket, :new) %></span>
