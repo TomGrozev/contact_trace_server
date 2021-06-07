@@ -26,6 +26,13 @@
     <%= @infection.last_name %>
   </li>
 
+  <%= if @infection.used_at do %>
+  <li>
+    <strong>Used at:</strong>
+    <%= DateTime.to_string(@infection.used_at) %>
+  </li>
+  <% end %>
+
 </ul>
 
 <span><%= live_patch "Edit", to: Routes.infection_show_path(@socket, :edit, @infection), class: "button" %></span>

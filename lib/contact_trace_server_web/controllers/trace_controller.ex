@@ -17,10 +17,10 @@ defmodule ContactTraceServerWeb.TraceController do
       {:ok, _contact_obj} ->
         json(conn, %{success: true})
 
-       {:error, :invalid_infection_code} ->
-         conn
-         |> put_status(403)
-         |> json(%{error: "invalid infection code"})
+      {:error, :invalid_infection_code} ->
+        conn
+        |> put_status(403)
+        |> json(%{error: "invalid infection code"})
 
       {:error, _} ->
         conn

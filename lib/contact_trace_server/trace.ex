@@ -53,7 +53,7 @@ defmodule ContactTraceServer.Trace do
   """
   def list_contacts do
     Repo.all(from c in Contacts, select: c.contacts)
-    |> Enum.map(fn c -> Enum.map(c, & %{uuid: &1.uuid, time: &1.time}) end)
+    |> Enum.map(fn c -> Enum.map(c, &%{uuid: &1.uuid, time: &1.time}) end)
   end
 
   @doc """
@@ -85,13 +85,13 @@ defmodule ContactTraceServer.Trace do
 
   """
   def create_contacts(infection_code, contacts) do
-    Infections.valid_infection_code?(infection_code)
+    Infections.use_infection_code(infection_code)
     |> case do
-      true ->
+      {:ok, _infection} ->
         do_create_contacts(contacts)
 
-      false ->
-        {:error, :invalid_infection_code}
+      any ->
+        any
     end
   end
 
