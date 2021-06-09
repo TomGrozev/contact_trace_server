@@ -1,39 +1,50 @@
-<h1>Show Infection</h1>
+<div>
+    <h1 class="text-2xl leading-6 font-bold text-gray-800 my-3">Show Infection</h1>
 
-<%= if @live_action in [:edit] do %>
-  <%= live_modal @socket, ContactTraceServerWeb.InfectionLive.FormComponent,
-    id: @infection.id,
-    title: @page_title,
-    action: @live_action,
-    infection: @infection,
-    return_to: Routes.infection_show_path(@socket, :show, @infection) %>
-<% end %>
+    <%= if @live_action in [:edit] do %>
+        <%= live_modal @socket, ContactTraceServerWeb.InfectionLive.FormComponent,
+        id: @infection.id,
+        title: @page_title,
+        action: @live_action,
+        infection: @infection,
+        return_to: Routes.infection_show_path(@socket, :show, @infection) %>
+    <% end %>
 
-<ul>
+    <div class="bg-white min-w-full max-w-2xl rounded-lg shadow-md mt-4">
+        <ul class="p-6">
 
-  <li>
-    <strong>ID:</strong>
-    <%= @infection.id %>
-  </li>
+            <li class="mb-2">
+                <strong class="mr-2">Infection Code:</strong>
+                <%= @infection.id %>
+            </li>
 
-  <li>
-    <strong>First name:</strong>
-    <%= @infection.first_name %>
-  </li>
+            <li class="mb-2">
+                <strong class="mr-2">First name:</strong>
+                <%= @infection.first_name %>
+            </li>
 
-  <li>
-    <strong>Last name:</strong>
-    <%= @infection.last_name %>
-  </li>
+            <li class="mb-2">
+                <strong class="mr-2">Last name:</strong>
+                <%= @infection.last_name %>
+            </li>
 
-  <%= if @infection.used_at do %>
-  <li>
-    <strong>Used at:</strong>
-    <%= DateTime.to_string(@infection.used_at) %>
-  </li>
-  <% end %>
+            <%= if @infection.used_at do %>
+            <li class="mb-2">
+                <strong class="mr-2">Used at:</strong>
+                <%= DateTime.to_string(@infection.used_at) %>
+            </li>
+            <% end %>
 
-</ul>
+        </ul>
 
-<span><%= live_patch "Edit", to: Routes.infection_show_path(@socket, :edit, @infection), class: "button" %></span>
-<span><%= live_redirect "Back", to: Routes.infection_index_path(@socket, :index) %></span>
+
+        <div class="modal-footer">
+            <div class="btn-wrapper">
+                <span><%= live_patch "Edit", to: Routes.infection_show_path(@socket, :edit, @infection), class: "btn cta" %></span>
+            </div>
+            <div class="btn-wrapper">
+                <span><%= live_redirect "Back", to: Routes.infection_index_path(@socket, :index), class: "btn info" %></span>
+            </div>
+        </div>
+    </div>
+</div>

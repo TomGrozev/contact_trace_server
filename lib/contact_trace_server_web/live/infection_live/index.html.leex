@@ -1,7 +1,5 @@
-<h1>Listing Infections</h1>
-
 <%= if @live_action in [:new, :edit] do %>
-  <%= live_modal @socket, ContactTraceServerWeb.InfectionLive.FormComponent,
+<%= live_modal @socket, ContactTraceServerWeb.InfectionLive.FormComponent,
     id: @infection.id || :new,
     title: @page_title,
     action: @live_action,
@@ -9,33 +7,48 @@
     return_to: Routes.infection_index_path(@socket, :index) %>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Used</th>
+<div>
+    <h1 class="text-2xl leading-6 font-bold text-gray-800 my-3"> Listing Infections </h1>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody id="infections">
-    <%= for infection <- @infections do %>
-      <tr id="infection-<%= infection.id %>">
-        <td><%= infection.id %></td>
-        <td><%= infection.first_name %></td>
-        <td><%= infection.last_name %></td>
-        <td><%= if infection.used_at, do: DateTime.to_string(infection.used_at), else: "-" %></td>
+    <div class="inline-block bg-white min-w-full max-w-2xl rounded-lg shadow-md mt-4">
+        <table class="table-card responsive">
+            <thead>
+            <tr>
+                <th>Code</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Used</th>
 
-        <td>
-          <span><%= live_redirect "Show", to: Routes.infection_show_path(@socket, :show, infection) %></span>
-          <span><%= live_patch "Edit", to: Routes.infection_index_path(@socket, :edit, infection) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: infection.id, data: [confirm: "Are you sure?"] %></span>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="infections">
+            <%= for infection <- @infections do %>
+            <tr id="infection-<%= infection.id %>">
+                <td><%= infection.id %></td>
+                <td><%= infection.first_name %></td>
+                <td><%= infection.last_name %></td>
+                <td><%= if infection.used_at, do: DateTime.to_string(infection.used_at), else: "-" %></td>
 
-<span><%= live_patch "New Infection", to: Routes.infection_index_path(@socket, :new) %></span>
+                <td>
+                    <div class="flex space-x-2 justify-center">
+                        <div class="btn-wrapper"><%= live_redirect "Show", to: Routes.infection_show_path(@socket, :show, infection), class: "btn-outline" %></div>
+                        <div class="btn-wrapper"><%= live_patch "Edit", to: Routes.infection_index_path(@socket, :edit, infection), class: "btn info" %></div>
+                        <div class="btn-wrapper"><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: infection.id, data: [confirm: "Are you sure?"], class: "btn danger" %></div>
+                    </div>
+                </td>
+            </tr>
+            <% end %>
+            </tbody>
+        </table>
+        <%= if length(@infections) == 0 do %>
+        <p class="text-center my-12 text-gray-500 italic text-md">There are no infections yet :/</p>
+        <% end %>
+
+        <div class="p-5 border-t flex justify-end">
+            <div class="Infection-wrapper">
+                <%= live_patch "New Infection", to: Routes.infection_index_path(@socket, :new), class: "btn cta" %>
+            </div>
+        </div>
+    </div>
+</div>

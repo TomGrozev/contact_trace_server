@@ -1,11 +1,25 @@
-<main role="main" class="container">
+<header>
+  <div class="p-4 w-full">
+    <div class="p-2 text-gray-900 bg-white rounded-lg shadow-lg ">
+      <%= live_patch to: Routes.page_path(@socket, :index), class: "px-2 mr-2 border-r border-gray-800" do %>
+      <img src="<%= Routes.static_path(@socket, "/images/logo.png") %>"
+           alt="Contact Trace" class="w-8 h-8 -mt-1 inline mx-auto">
+      <% end %>
+      <%= live_patch to: Routes.infection_index_path(@socket, :index), title: "Infections", class: "cursor-pointer hover:text-gray-700 p-2 bg-gray-200 rounded-full" do %>
+      <i class="fas fa-bug"></i> Infections
+      <% end %>
+    </div>
+  </div>
+</header>
+
+<main role="main" class="w-full p-6">
   <p class="alert alert-info" role="alert"
-    phx-click="lv:clear-flash"
-    phx-value-key="info"><%= live_flash(@flash, :info) %></p>
+     phx-click="lv:clear-flash"
+     phx-value-key="info"><%= live_flash(@flash, :info) %></p>
 
   <p class="alert alert-danger" role="alert"
-    phx-click="lv:clear-flash"
-    phx-value-key="error"><%= live_flash(@flash, :error) %></p>
+     phx-click="lv:clear-flash"
+     phx-value-key="error"><%= live_flash(@flash, :error) %></p>
 
   <%= @inner_content %>
 </main>
