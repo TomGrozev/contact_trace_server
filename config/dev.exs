@@ -2,7 +2,11 @@ use Mix.Config
 
 # Configure your database
 config :contact_trace_server, ContactTraceServer.Repo,
-  database: "database.db",
+  username: "postgres",
+  password: "admin",
+  database: "contact_trace_server_dev",
+  hostname: "172.16.30.3",
+  port: 37001,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

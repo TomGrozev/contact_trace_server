@@ -21,14 +21,14 @@ defmodule ContactTraceServerWeb.InfectionLive.Show do
     case Infections.reset_usage(socket.assigns.infection) do
       {:ok, infection} ->
         {:noreply,
-          socket
-          |> put_flash(:info, "Infection usage cleared")
-          |> assign(:infection, infection)}
+         socket
+         |> put_flash(:info, "Infection usage cleared")
+         |> assign(:infection, infection)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply,
-          socket
-          |> put_flash(:error, "Failed to reset usage of infection code")}
+         socket
+         |> put_flash(:error, "Failed to reset usage of infection code")}
     end
   end
 

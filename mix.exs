@@ -36,7 +36,7 @@ defmodule ContactTraceServer.MixProject do
       {:phoenix, "~> 1.5.8"},
       {:phoenix_ecto, "~> 4.1"},
       {:ecto_sql, "~> 3.4"},
-      {:ecto_sqlite3, "~> 0.5.5"},
+      {:postgrex, ">= 0.0.0"},
       {:phoenix_live_view, "~> 0.15.1"},
       {:floki, ">= 0.27.0", only: :test},
       {:phoenix_html, "~> 2.11"},

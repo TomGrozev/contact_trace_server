@@ -95,7 +95,6 @@ defmodule ContactTraceServer.Infections do
     update_infection(infection, %{used_at: nil})
   end
 
-
   @doc """
   Deletes a infection.
 

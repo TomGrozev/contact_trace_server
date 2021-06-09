@@ -25,6 +25,7 @@ defmodule ContactTraceServer.Expiry do
   end
 
   defp schedule_expire_check() do
-    Process.send_after(self(), :check_expired, 5 * 60 * 1000) # In 5 minutes
+    # In 5 minutes
+    Process.send_after(self(), :check_expired, 5 * 60 * 1000)
   end
 end

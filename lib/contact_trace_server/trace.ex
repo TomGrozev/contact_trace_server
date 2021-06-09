@@ -99,7 +99,10 @@ defmodule ContactTraceServer.Trace do
 
   defp do_create_contacts(contacts) do
     %Contacts{}
-    |> Contacts.changeset(%{expires_at: DateTime.add(DateTime.utc_now(), 2 * 7 * 24 * 60 * 60, :second), contacts: contacts})
+    |> Contacts.changeset(%{
+      expires_at: DateTime.add(DateTime.utc_now(), 2 * 7 * 24 * 60 * 60, :second),
+      contacts: contacts
+    })
     |> Repo.insert()
   end
 
@@ -125,12 +128,13 @@ defmodule ContactTraceServer.Trace do
   Removes all expired contacts
   """
   def remove_expired_contacts() do
-    {removed, _} = res = Repo.delete_all(from c in Contacts, where: c.expires_at < ^DateTime.utc_now())
-    Logger.debug("Removed #{removed} item#{if removed > 1, do: 's', else: '' }")
+    {removed, _} =
+      res = Repo.delete_all(from c in Contacts, where: c.expires_at < ^DateTime.utc_now())
+
+    Logger.debug("Removed #{removed} item#{if removed > 1, do: 's', else: ''}")
 
     res
   end
-
 
   @doc """
   Deletes a contacts.
