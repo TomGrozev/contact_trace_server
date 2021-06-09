@@ -2,6 +2,8 @@ defmodule ContactTraceServer.Infections.Infection do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:id, Ecto.UUID, autogenerate: true}
+
   schema "infections" do
     field :first_name, :string
     field :last_name, :string
