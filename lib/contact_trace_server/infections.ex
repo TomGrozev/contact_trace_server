@@ -89,6 +89,14 @@ defmodule ContactTraceServer.Infections do
   end
 
   @doc """
+  Resets the usage of a infection code
+  """
+  def reset_usage(%Infection{} = infection) do
+    update_infection(infection, %{used_at: nil})
+  end
+
+
+  @doc """
   Deletes a infection.
 
   ## Examples

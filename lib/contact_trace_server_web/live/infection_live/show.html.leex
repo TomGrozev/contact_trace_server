@@ -40,10 +40,13 @@
 
         <div class="modal-footer">
             <div class="btn-wrapper">
-                <span><%= live_patch "Edit", to: Routes.infection_show_path(@socket, :edit, @infection), class: "btn cta" %></span>
+                <%= live_patch "Edit", to: Routes.infection_show_path(@socket, :edit, @infection), class: "btn cta" %>
             </div>
             <div class="btn-wrapper">
-                <span><%= live_redirect "Back", to: Routes.infection_index_path(@socket, :index), class: "btn info" %></span>
+                <%= link "Reset usage", to: "#", phx_click: "reset_usage", phx_value_id: @infection.id, class: "btn success" %>
+            </div>
+            <div class="btn-wrapper">
+                <%= live_redirect "Back", to: Routes.infection_index_path(@socket, :index), class: "btn info" %>
             </div>
         </div>
     </div>
