@@ -12,24 +12,6 @@ defmodule ContactTraceServer.Trace do
   alias ContactTraceServer.Infections
 
   @doc """
-  Creates a contact.
-
-  ## Examples
-
-      iex> create_contact(%{field: value})
-      {:ok, %Contact{}}
-
-      iex> create_contact(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def create_contact(attrs \\ %{}) do
-    %Contact{}
-    |> Contact.changeset(attrs)
-    |> Repo.insert()
-  end
-
-  @doc """
   Returns an `%Ecto.Changeset{}` for tracking contact changes.
 
   ## Examples
@@ -54,6 +36,19 @@ defmodule ContactTraceServer.Trace do
 
   """
   def list_contacts do
+    Repo.all(Contacts)
+  end
+
+  @doc """
+  Returns the list of contacts.
+
+  ## Examples
+
+      iex> list_contacts()
+      [%Contacts{}, ...]
+
+  """
+  def list_public_contacts do
     Repo.all(from c in Contacts, select: c.contacts)
     |> Enum.map(fn c -> Enum.map(c, &%{uuid: &1.uuid, time: &1.time}) end)
   end

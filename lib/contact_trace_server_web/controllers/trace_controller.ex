@@ -4,7 +4,7 @@ defmodule ContactTraceServerWeb.TraceController do
   alias ContactTraceServer.Trace
 
   def index(conn, _params) do
-    contacts = Trace.list_contacts()
+    contacts = Trace.list_public_contacts()
 
     json(conn, contacts)
   end
