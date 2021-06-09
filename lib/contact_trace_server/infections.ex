@@ -37,19 +37,20 @@ defmodule ContactTraceServer.Infections do
   """
   def get_infection!(id), do: Repo.get!(Infection, id)
 
-  def use_infection_code(id) do
+  def use_infection_code(id) when is_binary(id) do
     case Repo.get(Infection, id) do
       nil ->
         {:error, :invalid_infection_code}
 
       %Infection{used_at: nil} = infection ->
         update_infection(infection, %{used_at: DateTime.utc_now()})
-        |> IO.inspect()
 
       %Infection{used_at: _} ->
         {:error, :invalid_infection_code}
     end
   end
+
+  def use_infection_code(_id), do: {:error, :invalid_infection_code}
 
   @doc """
   Creates a infection.
