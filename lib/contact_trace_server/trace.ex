@@ -99,7 +99,7 @@ defmodule ContactTraceServer.Trace do
 
   defp do_create_contacts(contacts) do
     %Contacts{}
-    |> Contacts.changeset(%{expires_at: DateTime.utc_now(), contacts: contacts})
+    |> Contacts.changeset(%{expires_at: DateTime.add(DateTime.utc_now(), 2 * 7 * 24 * 60 * 60, :second), contacts: contacts})
     |> Repo.insert()
   end
 
