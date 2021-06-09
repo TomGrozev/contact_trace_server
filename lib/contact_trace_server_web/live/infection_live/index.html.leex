@@ -28,7 +28,7 @@
                 <td><%= infection.id %></td>
                 <td><%= infection.first_name %></td>
                 <td><%= infection.last_name %></td>
-                <td><%= if infection.used_at, do: DateTime.to_string(infection.used_at), else: "-" %></td>
+                <td><%= if infection.used_at, do: DateTime.to_string(infection.used_at), else: "Never" %></td>
 
                 <td>
                     <div class="flex space-x-2 justify-center">
