@@ -3,6 +3,8 @@ defmodule ContactTraceServer.Trace do
   The Trace context.
   """
 
+  require Logger
+
   import Ecto.Query, warn: false
   alias ContactTraceServer.Repo
 
@@ -118,6 +120,17 @@ defmodule ContactTraceServer.Trace do
     |> Contacts.changeset(attrs)
     |> Repo.update()
   end
+
+  @doc """
+  Removes all expired contacts
+  """
+  def remove_expired_contacts() do
+    {removed, _} = res = Repo.delete_all(from c in Contacts, where: c.expires_at < ^DateTime.utc_now())
+    Logger.debug("Removed #{removed} item#{if removed > 1, do: 's', else: '' }")
+
+    res
+  end
+
 
   @doc """
   Deletes a contacts.

@@ -14,9 +14,10 @@ defmodule ContactTraceServer.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: ContactTraceServer.PubSub},
       # Start the Endpoint (http/https)
-      ContactTraceServerWeb.Endpoint
+      ContactTraceServerWeb.Endpoint,
       # Start a worker by calling: ContactTraceServer.Worker.start_link(arg)
       # {ContactTraceServer.Worker, arg}
+      ContactTraceServer.Expiry
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
