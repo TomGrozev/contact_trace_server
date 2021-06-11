@@ -18,17 +18,27 @@ defmodule ContactTraceServerWeb.InfectionLive.Show do
 
   @impl true
   def handle_event("reset_usage", _params, socket) do
-    case Infections.reset_usage(socket.assigns.infection) do
+    reset_usage(socket)
+  end
+
+  defp reset_usage(%{assigns: %{infection: %{used_at: nil}}} = socket) do
+    {:noreply,
+      socket
+      |> put_flash(:error, "Code has not been used")}
+  end
+
+  defp reset_usage(%{assigns: %{infection: infection}} = socket) do
+    case Infections.reset_usage(infection) do
       {:ok, infection} ->
         {:noreply,
-         socket
-         |> put_flash(:info, "Infection usage cleared")
-         |> assign(:infection, infection)}
+          socket
+          |> put_flash(:info, "Infection usage cleared")
+          |> assign(:infection, infection)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply,
-         socket
-         |> put_flash(:error, "Failed to reset usage of infection code")}
+          socket
+          |> put_flash(:error, "Failed to reset usage of infection code")}
     end
   end
 
