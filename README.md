@@ -1,5 +1,9 @@
 # ContactTraceServer
 
+This is an assignment I had for uni to implement a COVID contact tracing app. This is the server-side implementation, it is not complex at all, just a simple server.
+
+## Running
+
 To start the Phoenix server:
 
   * Install dependencies with `mix deps.get`
